@@ -1,60 +1,45 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import classNames from 'classnames';
+import { setCurrentShop } from 'store/current-shop/current-shop-slice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { getCurrentShop } from 'store/current-shop';
 
-const ShopsList: React.FC = () => {
-  const [currentShop, setCurrentShop] = useState<string>('');
+interface IShopsList {
+  shops: string[];
+}
 
-  const filterBtnClasses = classNames('btn w-full', {
-    'bg-blue-main': currentShop === 'Mfc2',
-  });
+const ShopsList: React.FC<IShopsList> = ({ shops }) => {
+  const dispatch = useAppDispatch();
+  const { shopTitle: currentShopTitle } = useAppSelector(getCurrentShop);
+
+  const filterBtnClasses = classNames('btn w-full', {});
 
   const handleFilterClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (currentShop === e.currentTarget?.value) {
-      setCurrentShop('');
+    if (currentShopTitle === e.currentTarget?.value) {
+      dispatch(setCurrentShop(''));
     } else {
       setCurrentShop(e.currentTarget?.value);
+      dispatch(setCurrentShop(e.currentTarget?.value));
     }
   };
 
   return (
     <section className="section w-[calc(30%-10px)]">
       <ul className="flex flex-col gap-8 w-full">
-        <li>
-          <button
-            type="button"
-            value="Mfc"
-            className={filterBtnClasses}
-            onClick={handleFilterClick}
-          >
-            Mfc
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            value="Mfc2"
-            className={filterBtnClasses}
-            onClick={handleFilterClick}
-          >
-            Mfc2
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            value="Mfc3"
-            className={filterBtnClasses}
-            onClick={handleFilterClick}
-          >
-            Mfc3
-          </button>
-        </li>
-        <li>
-          <button type="button" value="Mfc4" className="btn w-full" onClick={handleFilterClick}>
-            Mfc4
-          </button>
-        </li>
+        {shops?.map(shop => (
+          <li key={shop}>
+            <button
+              type="button"
+              value={shop}
+              className={
+                currentShopTitle === shop ? `${filterBtnClasses} bg-blue-main` : filterBtnClasses
+              }
+              onClick={handleFilterClick}
+            >
+              {shop}
+            </button>
+          </li>
+        ))}
       </ul>
     </section>
   );

@@ -1,8 +1,9 @@
-import Layout from 'components/layout/Layout';
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
-// import { Layout } from 'components/layout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Layout } from 'components/layout';
 
 const ShopsPage = lazy(() => import('./pages/ShopsPage'));
 const ShoppingCartPage = lazy(() => import('./pages/ShoppingCartPage'));
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
+      <ToastContainer theme="light" position="top-center" autoClose={5000} />
     </>
   );
 };

@@ -1,11 +1,16 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-// import { setupListeners } from '@reduxjs/toolkit/dist/query';
+
+import { productsReducer } from './products';
+import { currentShopReducer } from './current-shop';
+import { orderReducer } from './order';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    products: productsReducer,
+    currentShop: currentShopReducer,
+    order: orderReducer,
+  },
 });
-
-// setupListeners(store.dispatch);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

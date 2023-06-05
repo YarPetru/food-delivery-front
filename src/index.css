@@ -24,7 +24,7 @@
   }
 
   h2 {
-    @apply text-lg text-black;
+    @apply text-lg text-grey-dark text-center;
   }
 
   h3 {
@@ -34,7 +34,7 @@
 
 @layer components {
   .btn {
-    @apply px-5 py-2 text-white bg-blue-sky rounded-lg hover:bg-blue-main transition-all;
+    @apply px-5 py-2 text-white bg-blue-sky shadow-lg rounded-lg hover:bg-blue-main hover:shadow-md active:shadow-none disabled:bg-grey-main disabled:text-grey-light disabled:shadow-none transition-all;
   }
 
   .section {
@@ -42,7 +42,15 @@
   }
 
   .rounded-button {
-    @apply w-8 h-8 flex items-center justify-center rounded-full border border-grey-main text-grey-main hover:border-black hover:text-black transition-all;
+    @apply w-8 h-8 flex items-center justify-center rounded-full border border-transparent shadow-md text-grey-main hover:shadow-sm hover:text-grey-dark active:shadow-none transition-all;
+  }
+
+  .error-validation {
+    @apply text-xs text-blue-main ml-3;
+  }
+
+  .text-input {
+    @apply px-3 py-2 text-sm text-black outline-none rounded placeholder:font-extralight;
   }
 }
 

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { setCurrentShop } from 'store/current-shop/current-shop-slice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { getCurrentShop } from 'store/current-shop';
+import { getCurrentOrder } from 'store/order';
 
 interface IShopsList {
   shops: string[];
@@ -11,6 +12,9 @@ interface IShopsList {
 const ShopsList: React.FC<IShopsList> = ({ shops }) => {
   const dispatch = useAppDispatch();
   const { shopTitle: currentShopTitle } = useAppSelector(getCurrentShop);
+  const { data: currentOrder } = useAppSelector(getCurrentOrder);
+
+  const currentOrderShops = currentOrder.map(product => product.shop_title);
 
   const filterBtnClasses = classNames('btn w-full', {});
 
@@ -31,6 +35,7 @@ const ShopsList: React.FC<IShopsList> = ({ shops }) => {
             <button
               type="button"
               value={shop}
+              disabled={!currentOrderShops.includes(shop) && currentOrderShops.length !== 0}
               className={
                 currentShopTitle === shop ? `${filterBtnClasses} bg-blue-main` : filterBtnClasses
               }

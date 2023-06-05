@@ -22,7 +22,7 @@ module.exports = {
       xs: ['14px', { fontWeight: '400' }],
       sm: ['20px', { fontWeight: '400' }],
       md: ['24px', { fontWeight: '500' }],
-      lg: ['32px', { fontWeight: '400' }],
+      lg: ['56px', { fontWeight: '200' }],
       xl: ['56px', { fontWeight: '700' }],
     },
     colors: {
@@ -39,6 +39,7 @@ module.exports = {
       grey: {
         light: '#F6F4F5',
         main: '#C5BAA9',
+        dark: '#9e9587',
       },
       olive: {
         main: '#686C33',

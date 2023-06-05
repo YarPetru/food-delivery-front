@@ -10,7 +10,7 @@ interface IProductCard {
 
 const ProductCard: React.FC<IProductCard> = ({ product, addToCart, isAlreadyInOrder }) => {
   return (
-    <li className="w-[calc(33%-16px)] flex flex-col gap-4 items-center bg-white rounded-md overflow-hidden">
+    <li className="w-[calc(33%-16px)] flex flex-col gap-4 items-center bg-white rounded-md shadow-sm overflow-hidden">
       <div className="group relative overflow-hidden h-[200px]">
         <img
           src={

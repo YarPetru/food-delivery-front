@@ -6,7 +6,7 @@ interface IChangeProductCard {
   product: IOrderedProduct;
 }
 
-const ChangeProductCard: React.FC<IChangeProductCard> = ({ product }) => {
+const OrderedProductsCard: React.FC<IChangeProductCard> = ({ product }) => {
   const [, setProductQuantity] = useState<number>(1);
 
   const handleRemoveProduct = () => {
@@ -56,4 +56,4 @@ const ChangeProductCard: React.FC<IChangeProductCard> = ({ product }) => {
   );
 };
 
-export default ChangeProductCard;
+export default OrderedProductsCard;

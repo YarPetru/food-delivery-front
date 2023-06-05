@@ -7,7 +7,7 @@ import ProductCard from './ProductCard';
 import { IProduct, IOrderedProduct } from 'types/types';
 import { getCurrentShop } from 'store/current-shop';
 import { getCurrentOrder } from 'store/order';
-import { setOrder } from 'store/order/order-slice';
+import { addToOrder } from 'store/order/order-slice';
 
 interface IProductsList {
   products: IProduct[];
@@ -26,7 +26,7 @@ const ProductsList: React.FC<IProductsList> = ({ products, isShopChoosen = false
 
   const handleAddToCartBtnClick = (product: IProduct) => {
     const orderedProduct: IOrderedProduct = { ...product, quantity: 1 };
-    dispatch(setOrder(orderedProduct));
+    dispatch(addToOrder(orderedProduct));
   };
 
   const bgClasses = classNames('absolute inset-0 w-full h-full object-cover rounded-md -z-50', {

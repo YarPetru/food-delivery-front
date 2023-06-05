@@ -16,7 +16,6 @@ const UserDataForm: React.FC = () => {
   const handleSubmit = () => {};
   const { data: currentOrder } = useAppSelector(getCurrentOrder);
   const isShoppingCartEmpty = currentOrder.length === 0;
-  console.log(isShoppingCartEmpty);
 
   return (
     <section className="section w-[calc(30%-10px)] h-[600px]">

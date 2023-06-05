@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { IOrderedProduct } from 'types/types';
+import { useAppDispatch } from 'hooks/redux-hooks';
+import { removeFromOrder } from 'store/order/order-slice';
 
 interface IChangeProductCard {
   product: IOrderedProduct;
 }
 
 const OrderedProductsCard: React.FC<IChangeProductCard> = ({ product }) => {
+  const dispatch = useAppDispatch();
   const [, setProductQuantity] = useState<number>(1);
 
-  const handleRemoveProduct = () => {
-    console.log('remove product with id');
+  const handleRemoveProduct = (product: IOrderedProduct) => {
+    dispatch(removeFromOrder(product));
   };
 
   const handleNumberProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +51,7 @@ const OrderedProductsCard: React.FC<IChangeProductCard> = ({ product }) => {
       <button
         type="button"
         className="top-2 right-2 rounded-button absolute"
-        onClick={handleRemoveProduct}
+        onClick={() => handleRemoveProduct(product)}
       >
         <HiOutlineX />
       </button>

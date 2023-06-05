@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 
-axios.defaults.baseURL = 'http://localhost:9999/api/';
+axios.defaults.baseURL = 'https://food-delivery-back-9ix7.onrender.com/api/';
 
 export const fetchOrders = createAsyncThunk('orders/fetch', async () => {
   const res = await axios.get('/orders');

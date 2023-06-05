@@ -7,7 +7,7 @@ interface IChangeProductCard {
 }
 
 const ChangeProductCard: React.FC<IChangeProductCard> = ({ product }) => {
-  const [productQuantity, setProductQuantity] = useState<number>(1);
+  const [, setProductQuantity] = useState<number>(1);
 
   const handleRemoveProduct = () => {
     console.log('remove product with id');

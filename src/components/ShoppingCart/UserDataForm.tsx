@@ -5,6 +5,7 @@ import * as yup from 'yup';
 const emailRegEx =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
+// eslint-disable-next-line
 const phoneRegEx = /^[\+]{0,1}380([0-9]{9})$/;
 
 const validationSchema = yup.object().shape({

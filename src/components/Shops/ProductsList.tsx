@@ -39,7 +39,12 @@ const ProductsList: React.FC<IProductsList> = ({ products, isShopChoosen = false
       <img src={menuBg} alt="choose a shop to watch a menu" className={bgClasses} />
 
       {!currentShopTitle ? (
-        <h2>Choose a shop to start selecting food</h2>
+        <div className="w-full h-full flex justify-center items-center">
+          <h2>
+            Choose a shop <br />
+            to start <span className="text-olive-main font-normal">selecting food</span>
+          </h2>
+        </div>
       ) : (
         <ul className="flex flex-wrap gap-7">
           {filteredProducts?.map(product => (

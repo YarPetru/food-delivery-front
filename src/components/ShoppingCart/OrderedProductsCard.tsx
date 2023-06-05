@@ -21,8 +21,8 @@ const OrderedProductsCard: React.FC<IChangeProductCard> = ({ product }) => {
   };
 
   return (
-    <li className="relative w-full flex gap-4 items-center bg-white rounded-md overflow-hidden">
-      <div className="group relative overflow-hidden h-[200px]">
+    <li className="relative h-1/3 flex gap-8 items-center bg-white rounded-md overflow-hidden">
+      <div className="group relative overflow-hidden h-[210px] w-4/5">
         <img
           src={
             !!product.image
@@ -32,21 +32,23 @@ const OrderedProductsCard: React.FC<IChangeProductCard> = ({ product }) => {
           alt="product"
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-0 w-full h-full p-6 bg-blue-sky-80 translate-y-full group-hover:translate-y-0 transition-all">
+        <div className="absolute top-0 w-full h-full p-6 text-xs bg-blue-sky-80 translate-y-full group-hover:translate-y-0 transition-all">
           {product.description}
         </div>
       </div>
-      <div className="flex flex-col gap-4 items-center text-center w-full p-6">
-        <h3>{product.product}</h3>
-        <p>Price:{product.price}</p>
-        <input
-          type="number"
-          value={product.quantity}
-          min="1"
-          max="20"
-          className="pl-2 py-1 border border-grey-light outline-1 outline-grey-main"
-          onChange={handleNumberProducts}
-        />
+      <div className="flex flex-col gap-4 items-start text-center w-full h-full py-6 pr-10 pl-2">
+        <h2>{product.product}</h2>
+        <div className="w-full flex items-center gap-8">
+          <p>Price:{` ${product.price} UAH`}</p>
+          <input
+            type="number"
+            value={product.quantity}
+            min="1"
+            max="20"
+            className="pl-2 py-1 border border-grey-light outline-1 outline-grey-main"
+            onChange={handleNumberProducts}
+          />
+        </div>
       </div>
       <button
         type="button"

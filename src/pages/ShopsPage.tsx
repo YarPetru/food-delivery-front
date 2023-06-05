@@ -7,7 +7,7 @@ import { ShopsList, ProductsList } from 'components/Shops';
 const ShopsPage: React.FC = () => {
   const [currentShop] = useState<string>('');
 
-  const [doFetchProducts, isLoadingProducts, loadingProductsError] = useThunk(fetchProducts);
+  const [doFetchProducts] = useThunk(fetchProducts);
 
   const { data: products } = useAppSelector(getProducts);
 

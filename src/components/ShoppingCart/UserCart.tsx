@@ -6,7 +6,9 @@ import { getCurrentOrder } from 'store/order';
 
 const UserCart: React.FC = () => {
   const { data: currentOrder } = useAppSelector(getCurrentOrder);
-  const total = currentOrder.reduce((total, product) => total + product.price, 0);
+  const total = currentOrder.reduce((total, product) => {
+    return +(total + product.price * product.quantity!).toFixed(2);
+  }, 0);
 
   return (
     <section className="section w-[calc(70%-10px)] h-[600px] bg-gradient-to-tr from-grey-light to-blue-sky-70 overflow-auto">

@@ -26,6 +26,13 @@ const orderSlice = createSlice({
         return product._id !== action.payload._id;
       });
     },
+    changeQuantity: (state, action: PayloadAction<{ productId: string; quantity: number }>) => {
+      const { productId, quantity } = action.payload;
+      const currentProduct = state.data.find(p => p._id === productId);
+      if (currentProduct) {
+        currentProduct.quantity = quantity;
+      }
+    },
   },
   extraReducers(builder) {
     builder.addCase(addOrder.pending, state => {
@@ -44,6 +51,6 @@ const orderSlice = createSlice({
   },
 });
 
-export const { addToOrder, removeFromOrder } = orderSlice.actions;
+export const { addToOrder, removeFromOrder, changeQuantity } = orderSlice.actions;
 
 export default orderSlice.reducer;

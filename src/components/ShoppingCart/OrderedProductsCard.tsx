@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HiOutlineX } from 'react-icons/hi';
-import { IOrderedProduct } from 'types/types';
 import { useAppDispatch } from 'hooks/redux-hooks';
-import { removeFromOrder } from 'store/order/order-slice';
+import { removeFromOrder, changeQuantity } from 'store/order/order-slice';
+import { IProduct } from 'types/types';
 
-interface IChangeProductCard {
-  product: IOrderedProduct;
+interface IOrderedProductsCard {
+  product: IProduct;
 }
 
-const OrderedProductsCard: React.FC<IChangeProductCard> = ({ product }) => {
+const OrderedProductsCard: React.FC<IOrderedProductsCard> = ({ product }) => {
   const dispatch = useAppDispatch();
-  const [, setProductQuantity] = useState<number>(1);
 
-  const handleRemoveProduct = (product: IOrderedProduct) => {
+  const handleRemoveProduct = (product: IProduct) => {
     dispatch(removeFromOrder(product));
   };
 
   const handleNumberProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductQuantity(Number(e.target.value));
+    const quantity = Number(e.target.value);
+    dispatch(changeQuantity({ productId: product._id, quantity }));
   };
 
   return (

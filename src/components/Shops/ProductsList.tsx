@@ -11,10 +11,9 @@ import { addToOrder } from 'store/order/order-slice';
 
 interface IProductsList {
   products: IProduct[];
-  isShopChoosen: boolean;
 }
 
-const ProductsList: React.FC<IProductsList> = ({ products, isShopChoosen = false }) => {
+const ProductsList: React.FC<IProductsList> = ({ products }) => {
   const dispatch = useAppDispatch();
 
   const { shopTitle: currentShopTitle } = useAppSelector(getCurrentShop);

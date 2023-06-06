@@ -5,6 +5,7 @@ export interface IProduct {
   price: number;
   description: string;
   image: string;
+  quantity?: number;
 }
 
 export interface IOrderedProduct extends IProduct {

@@ -13,7 +13,6 @@ const ShopsList: React.FC<IShopsList> = ({ shops }) => {
   const dispatch = useAppDispatch();
   const { shopTitle: currentShopTitle } = useAppSelector(getCurrentShop);
   const currentOrder = useAppSelector(getCurrentOrder);
-  console.log(currentOrder);
 
   const currentOrderShops = currentOrder.map(product => product.shop_title);
 

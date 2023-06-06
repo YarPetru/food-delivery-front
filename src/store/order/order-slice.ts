@@ -44,6 +44,7 @@ const orderSlice = createSlice({
     builder.addCase(addOrder.fulfilled, (state, action: PayloadAction<IConfirmedOrder>) => {
       state.isLoading = false;
       state.confirmedOrder = action.payload;
+      state.currentOrder = initialState.currentOrder;
     });
 
     builder.addCase(addOrder.rejected, (state, action) => {

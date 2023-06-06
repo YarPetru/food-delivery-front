@@ -1,8 +1,10 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { useAppSelector } from 'hooks/redux-hooks';
 import { Formik, Form, ErrorMessage, Field, FormikHelpers } from 'formik';
+import classNames from 'classnames';
+import PropagateLoader from 'react-spinners/PropagateLoader';
 import { validationSchema } from 'utils/yup-scheme';
-
+import { useThunk } from 'hooks/use-thunk';
 import { addOrder, getCurrentOrder } from 'store/order';
 import { IUser } from 'types/types';
 
@@ -14,15 +16,20 @@ const initialValues = {
 };
 
 const UserDataForm: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const [doAddOrder, isLoading] = useThunk(addOrder);
+
   const currentOrder = useAppSelector(getCurrentOrder);
   const isShoppingCartEmpty = currentOrder.length === 0;
 
   const handleSubmit = async (values: IUser, actions: FormikHelpers<IUser>) => {
     const confirmedOrder = { user: values, order: currentOrder };
-    await dispatch(addOrder(confirmedOrder));
+    await doAddOrder(confirmedOrder);
     actions.resetForm();
   };
+
+  const submitBtnClasses = classNames(
+    "h-[50px] font-md text-white border bg-blue-sky border-transparent rounded px-4 py-2 overflow-hidden transition-all duration-600 relative z-50 disabled:after:hidden disabled:bg-grey-main disabled:text-grey-light after:h-0  after:w-full after:absolute after:left-0 after:top-1/2 after:-z-10 after:bg-blue-main active:after:bg-blue-main hover:after:content-[''] hover:after:w-full hover:after:left-0 hover:after:top-0 hover:after:block hover:after:h-full  after:transition-all after:duration-600"
+  );
 
   return (
     <section className="section w-[calc(30%-10px)] h-[600px]">
@@ -100,23 +107,9 @@ const UserDataForm: React.FC = () => {
               <button
                 type="submit"
                 disabled={isShoppingCartEmpty || areFieldsUntouched || !isValid}
-                className="font-md text-white border bg-blue-sky border-transparent rounded px-4 py-2 overflow-hidden transition-all duration-600 relative z-50 
-          disabled:after:hidden disabled:bg-grey-main disabled:text-grey-light
-          after:h-0  after:w-full after:absolute after:left-0 after:top-1/2 after:-z-10 after:bg-blue-main active:after:bg-blue-main 
-          hover:after:content-[''] hover:after:w-full hover:after:left-0 hover:after:top-0 hover:after:block hover:after:h-full  after:transition-all after:duration-600"
+                className={submitBtnClasses}
               >
-                {/* {isPending ? (
-                  <BeatLoader
-                    cssOverride={{
-                      textAlign: 'center',
-                    }}
-                    color="#64829B"
-                    size="6px"
-                  />
-                ) : (
-                  'Confirm order'
-                )} */}
-                Confirm order
+                {isLoading ? <PropagateLoader color="#fff" size="8px" /> : 'Confirm order'}
               </button>
             </Form>
           );

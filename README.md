@@ -52,5 +52,4 @@ for styling w/o using off-the-shelf components
 This is Front-end part of application. To get all the features of the app please use the
 [backend part of the link](https://github.com/YarPetru/food-delivery-back)
 
-The application allows you to work with Superheroes data using CRUD operations of the superhero
-model.
+###

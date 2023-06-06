@@ -7,7 +7,7 @@ import Navigation from './Navigation';
 import { getCurrentOrder } from 'store/order';
 
 const Header: React.FC = () => {
-  const { data: currentOrder } = useAppSelector(getCurrentOrder);
+  const currentOrder = useAppSelector(getCurrentOrder);
   const isShoppingCartEmpty = currentOrder.length === 0;
 
   return (

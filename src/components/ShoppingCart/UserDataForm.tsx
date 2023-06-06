@@ -1,9 +1,10 @@
 import React from 'react';
-import { useAppSelector } from 'hooks/redux-hooks';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { Formik, Form, ErrorMessage, Field, FormikHelpers } from 'formik';
 import { validationSchema } from 'utils/yup-scheme';
 
-import { getCurrentOrder } from 'store/order';
+import { addOrder, getCurrentOrder } from 'store/order';
+import { IUser } from 'types/types';
 
 const initialValues = {
   name: '',
@@ -13,9 +14,15 @@ const initialValues = {
 };
 
 const UserDataForm: React.FC = () => {
-  const handleSubmit = () => {};
-  const { data: currentOrder } = useAppSelector(getCurrentOrder);
+  const dispatch = useAppDispatch();
+  const currentOrder = useAppSelector(getCurrentOrder);
   const isShoppingCartEmpty = currentOrder.length === 0;
+
+  const handleSubmit = async (values: IUser, actions: FormikHelpers<IUser>) => {
+    const confirmedOrder = { user: values, order: currentOrder };
+    await dispatch(addOrder(confirmedOrder));
+    actions.resetForm();
+  };
 
   return (
     <section className="section w-[calc(30%-10px)] h-[600px]">

@@ -17,7 +17,7 @@ const ProductsList: React.FC<IProductsList> = ({ products }) => {
   const dispatch = useAppDispatch();
 
   const { shopTitle: currentShopTitle } = useAppSelector(getCurrentShop);
-  const { data: currentOrder } = useAppSelector(getCurrentOrder);
+  const currentOrder = useAppSelector(getCurrentOrder);
 
   const currendOrderIds = currentOrder.map(product => product._id);
 

@@ -5,7 +5,7 @@ import { useAppSelector } from 'hooks/redux-hooks';
 import { getCurrentOrder } from 'store/order';
 
 const UserCart: React.FC = () => {
-  const { data: currentOrder } = useAppSelector(getCurrentOrder);
+  const currentOrder = useAppSelector(getCurrentOrder);
   const total = currentOrder.reduce((total, product) => {
     return +(total + product.price * product.quantity!).toFixed(2);
   }, 0);

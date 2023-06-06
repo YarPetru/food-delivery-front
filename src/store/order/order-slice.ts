@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { addOrder } from './order-thunks';
-import { IProduct } from 'types/types';
+import { IProduct, IConfirmedOrder } from 'types/types';
 
 interface ProductsState {
-  data: IProduct[];
+  currentOrder: IProduct[];
+  confirmedOrder: IConfirmedOrder;
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: ProductsState = {
-  data: [],
+  currentOrder: [],
+  confirmedOrder: { user: null, order: null },
   isLoading: false,
   error: null,
 };
@@ -19,16 +21,16 @@ const orderSlice = createSlice({
   initialState,
   reducers: {
     addToOrder: (state, action: PayloadAction<IProduct>) => {
-      state.data.push(action.payload);
+      state.currentOrder.push(action.payload);
     },
     removeFromOrder: (state, action) => {
-      state.data = state.data.filter(product => {
+      state.currentOrder = state.currentOrder.filter(product => {
         return product._id !== action.payload._id;
       });
     },
     changeQuantity: (state, action: PayloadAction<{ productId: string; quantity: number }>) => {
       const { productId, quantity } = action.payload;
-      const currentProduct = state.data.find(p => p._id === productId);
+      const currentProduct = state.currentOrder.find(p => p._id === productId);
       if (currentProduct) {
         currentProduct.quantity = quantity;
       }
@@ -39,9 +41,9 @@ const orderSlice = createSlice({
       state.isLoading = true;
     });
 
-    builder.addCase(addOrder.fulfilled, (state, action: PayloadAction<IProduct>) => {
+    builder.addCase(addOrder.fulfilled, (state, action: PayloadAction<IConfirmedOrder>) => {
       state.isLoading = false;
-      state.data.push(action.payload);
+      state.confirmedOrder = action.payload;
     });
 
     builder.addCase(addOrder.rejected, (state, action) => {

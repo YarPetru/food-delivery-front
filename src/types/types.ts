@@ -8,6 +8,14 @@ export interface IProduct {
   quantity?: number;
 }
 
-// export interface IOrderedProduct extends IProduct {
-//   quantity?: number;
-// }
+export interface IUser {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+}
+
+export interface IConfirmedOrder {
+  user: IUser | null;
+  order: IProduct[] | null;
+}

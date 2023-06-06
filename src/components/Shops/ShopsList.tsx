@@ -12,7 +12,8 @@ interface IShopsList {
 const ShopsList: React.FC<IShopsList> = ({ shops }) => {
   const dispatch = useAppDispatch();
   const { shopTitle: currentShopTitle } = useAppSelector(getCurrentShop);
-  const { data: currentOrder } = useAppSelector(getCurrentOrder);
+  const currentOrder = useAppSelector(getCurrentOrder);
+  console.log(currentOrder);
 
   const currentOrderShops = currentOrder.map(product => product.shop_title);
 

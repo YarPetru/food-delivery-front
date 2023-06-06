@@ -8,6 +8,6 @@ export interface IProduct {
   quantity?: number;
 }
 
-export interface IOrderedProduct extends IProduct {
-  quantity?: number;
-}
+// export interface IOrderedProduct extends IProduct {
+//   quantity?: number;
+// }

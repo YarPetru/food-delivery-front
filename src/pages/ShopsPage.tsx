@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { useAppSelector } from 'hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { useThunk } from 'hooks/use-thunk';
 import { fetchProducts, getProducts } from 'store/products';
 import { ShopsList, ProductsList } from 'components/Shops';
+import { setProducts } from 'store/products/products-slice';
 
 const ShopsPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [doFetchProducts, isLoading, error] = useThunk(fetchProducts);
 
   const { data: products } = useAppSelector(getProducts);
@@ -13,8 +15,12 @@ const ShopsPage: React.FC = () => {
   const uniqueShops = shops.filter((value, index, array) => array.indexOf(value) === index);
 
   useEffect(() => {
-    doFetchProducts();
-  }, [doFetchProducts]);
+    if (products) {
+      dispatch(setProducts(products));
+    } else {
+      doFetchProducts();
+    }
+  }, [doFetchProducts, dispatch, products]);
 
   return isLoading ? (
     <h2>Loading... </h2>

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 
 import ProductCard from './ProductCard';
-import { IProduct, IOrderedProduct } from 'types/types';
+import { IProduct } from 'types/types';
 import { getCurrentShop } from 'store/current-shop';
 import { getCurrentOrder } from 'store/order';
 import { addToOrder } from 'store/order/order-slice';
@@ -24,7 +24,7 @@ const ProductsList: React.FC<IProductsList> = ({ products }) => {
   const filteredProducts = products.filter(product => product.shop_title === currentShopTitle);
 
   const handleAddToCartBtnClick = (product: IProduct) => {
-    const orderedProduct: IOrderedProduct = { ...product, quantity: 1 };
+    const orderedProduct: IProduct = { ...product, quantity: 1 };
     dispatch(addToOrder(orderedProduct));
   };
 

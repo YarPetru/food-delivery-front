@@ -10,12 +10,13 @@ const ShopsPage: React.FC = () => {
   const [doFetchProducts, isLoading, error] = useThunk(fetchProducts);
 
   const { data: products } = useAppSelector(getProducts);
+  console.log(products);
 
   const shops = products.map(item => item.shop_title);
   const uniqueShops = shops.filter((value, index, array) => array.indexOf(value) === index);
 
   useEffect(() => {
-    if (products) {
+    if (products.length !== 0) {
       dispatch(setProducts(products));
     } else {
       doFetchProducts();

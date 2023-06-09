@@ -77,10 +77,10 @@ your shopping cart, three things happen:
 2. The product list allows you to delete a product from the order or change its quantity. The total
    price updates dynamically. If all products are deleted from the shopping cart, the content of the
    Shopping cart section changes.
-3. Back to user data form. Here, you have to fill all inputs before the submit button becomes
-   available. However, if your shopping cart is empty, the submit button will remain unavailable.
-   Pay attention: the phone number must start with +380. Any other requirements will be displayed if
-   you make mistakes or leave inputs empty.
+3. Back to user data form. Here, you have to fill all inputs correctly and touch them before the
+   submit button becomes available. However, if your shopping cart is empty, the submit button will
+   remain unavailable. Pay attention: the phone number must start with +380. Any other requirements
+   will be displayed if you make mistakes or leave inputs empty.
 4. When you successfully confirm the order, you will receive a toast notification about it, and the
    form and your shopping cart will be cleared.
 
